@@ -1,0 +1,5 @@
+inputFilePath=FoursquareGraph.json
+resultFolderPath=results
+delta=0.01
+writeFoundPatterns=false
+sigma=1
