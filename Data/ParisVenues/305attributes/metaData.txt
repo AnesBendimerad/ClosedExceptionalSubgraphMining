@@ -1,0 +1,4 @@
+number of vertices:115
+number of attributes:305
+number of edges:231
+number of venues:27443

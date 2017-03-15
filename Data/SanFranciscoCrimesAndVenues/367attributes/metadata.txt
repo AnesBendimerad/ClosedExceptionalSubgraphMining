@@ -1,0 +1,5 @@
+number of vertices:342
+number of attributes:367
+number of edges:767
+number of venues:21654
+number of crimes:878049
