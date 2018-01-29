@@ -328,7 +328,10 @@ public class PatternSampler implements IPatternSampler {
 			OpenBitSet subgraph = new OpenBitSet(graph.getVertices().length);
 			subgraph.fastSet(vertex.getIndexInGraph());
 			OpenBitSet neighbors = new OpenBitSet(graph.getVertices().length);
-			neighbors.or(vertex.getNeighborsBitSet());
+			for ( int nId : vertex.getSetOfNeighborsId()){
+				neighbors.fastSet(nId);
+			}
+			//neighbors.or(vertex.getNeighborsBitSet());
 
 			OpenBitSet sPlusBitSet = new OpenBitSet(graph.getDescriptorsMetaData().getAttributesName().length);
 			OpenBitSet sMinusBitSet = new OpenBitSet(graph.getDescriptorsMetaData().getAttributesName().length);
@@ -353,7 +356,10 @@ public class PatternSampler implements IPatternSampler {
 			pattern.setNeighbors(neighbors);
 		} else {
 			pattern.getSubgraphBitSet().fastSet(vertex.getIndexInGraph());
-			pattern.getNeighbors().or(vertex.getNeighborsBitSet());
+			for ( int nId : vertex.getSetOfNeighborsId()){
+				pattern.getNeighbors().fastSet(nId);
+			}
+			//pattern.getNeighbors().or(vertex.getNeighborsBitSet());
 			intermediateSet1.clear(0, graph.getDescriptorsMetaData().getAttributesName().length);
 			intermediateSet2.clear(0, graph.getDescriptorsMetaData().getAttributesName().length);
 			intermediateSet1.or(pattern.getCharacteristic().getsPlusBitSet());
@@ -468,8 +474,12 @@ public class PatternSampler implements IPatternSampler {
 			rest.fastClear(curId);
 			Vertex curVertex = graph.getVertices()[curId];
 			pattern.getSubgraphBitSet().fastSet(curId);
-			pattern.getNeighbors().or(curVertex.getNeighborsBitSet());
-			rest.or(curVertex.getNeighborsBitSet());
+			for ( int nId : curVertex.getSetOfNeighborsId()){
+				pattern.getNeighbors().fastSet(nId);
+				rest.fastSet(nId);
+			}
+			//pattern.getNeighbors().or(curVertex.getNeighborsBitSet());
+			//rest.or(curVertex.getNeighborsBitSet());
 			rest.and(allCandidates);
 			rest.andNot(pattern.getSubgraphBitSet());
 			i = 0;
