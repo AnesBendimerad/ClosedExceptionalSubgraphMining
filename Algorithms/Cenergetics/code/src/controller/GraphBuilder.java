@@ -92,7 +92,7 @@ public class GraphBuilder {
 				}
 			}
 			for (Vertex v : builtGraph.getVertices()) {
-				v.setupNeighborsIds(builtGraph.getVertices().length);
+				//v.setupNeighborsIds(builtGraph.getVertices().length);
 			}
 			graphFile.close();
 		} catch (FileNotFoundException e) {
