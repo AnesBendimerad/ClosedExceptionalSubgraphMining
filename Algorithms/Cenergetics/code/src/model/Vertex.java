@@ -10,7 +10,7 @@ public class Vertex {
 	private double[] descriptorsValues = null;
 	private double descriptorsTotal =0;
 	private double[] descriptorsScores = null;
-	private OpenBitSet neighborsBitSet;
+	//private OpenBitSet neighborsBitSet;
 	private OpenBitSet positiveAttributesBitSet;
 	private OpenBitSet negativeAttributesBitSet;
 	private HashSet<Integer> setOfNeighborsId;
@@ -54,14 +54,14 @@ public class Vertex {
 	}
 
 	public void setupNeighborsIds(int sizeOfGraph) {
-		neighborsBitSet = new OpenBitSet(sizeOfGraph);
-		for (int neighborId : setOfNeighborsId) {
-			neighborsBitSet.fastSet(neighborId);
-		}
+		//neighborsBitSet = new OpenBitSet(sizeOfGraph);
+		//for (int neighborId : setOfNeighborsId) {
+		//	neighborsBitSet.fastSet(neighborId);
+		//}
 	}
-	public OpenBitSet getNeighborsBitSet() {
-		return neighborsBitSet;
-	}
+	//public OpenBitSet getNeighborsBitSet() {
+	//	return neighborsBitSet;
+	//}
 	public String getId() {
 		return id;
 	}
