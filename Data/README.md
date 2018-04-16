@@ -14,29 +14,29 @@ Each dataset is described by three files:
 ```json
 {
 	"descriptorName": "FoursquareVenues",	
-	attributesName: ["Health","Tourism","Store","Food","Industry"],
-	vertices : [
+	"attributesName": ["Health","Tourism","Store","Food","Industry"],
+	"vertices" : [
 		{
-			vertexId : "V1",
-			descriptorsValues :[12,5,4,1,4]
+			"vertexId" : "V1",
+			"descriptorsValues" :[12,5,4,1,4]
 		},
 		{
-			vertexId : "V2",
-			descriptorsValues :[12,4,4,6,6]
+			"vertexId" : "V2",
+			"descriptorsValues" :[12,4,4,6,6]
 		},
 		{
-			vertexId : "V3",
-			descriptorsValues :[4,13,6,6,5]
+			"vertexId" : "V3",
+			"descriptorsValues" :[4,13,6,6,5]
 		}
 	],
-	edges : [
+	"edges" : [
 		{
-			vertexId :"V1",
-			connected_vertices : ["V2","V3"]
+			"vertexId" :"V1",
+			"connected_vertices" : ["V2","V3"]
 		},
 		{
-			vertexId :"V2",
-			connected_vertices : ["V1"]
+			"vertexId" :"V2",
+			"connected_vertices" : ["V1"]
 		}
 	]
 }
