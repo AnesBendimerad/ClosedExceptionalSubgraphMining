@@ -5,5 +5,5 @@ This repository provides the code and the data used in the paper **Mining except
 All the source codes are implemented in Java.
 
 ## References
-1 - Anes Bendimerad, Marc Plantevit, Céline Robardet. Mining exceptional closed patterns in attributed graphs. KAIS 2016.
+1 - Anes Bendimerad, Marc Plantevit, Céline Robardet. Mining exceptional closed patterns in attributed graphs. KAIS 2017.
 2 - Anes Bendimerad, Marc Plantevit, Céline Robardet. Unsupervised Exceptional Attributed Sub-graph Mining in Urban Data. ICDM 2016.
