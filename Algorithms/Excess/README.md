@@ -3,7 +3,7 @@ The algorithm Excess is the subgraph sampling approach of exceptional attributed
 
 The folder "Release" contains the runnable JAR file. This can be directly executed. The folder "Code" contains the source code of the algorithm.  The compilation of this algorithm requires some libraries which are are provided in "Code/lib".
 
-## Inputs of EXPRESS
+## Inputs of Excess
 Excess requires two input files. These files must be in the same repository as the runnable JAR. These files are described in what follows.
 
 **1 - The graph file**: This contains the graph the algorithm will mine. It is a JSON file that defines the structure of the graph and the vertex descriptions. The listing below is a simple example of a graph file.
@@ -59,7 +59,7 @@ These parameters are explained in what follows:
 - removeRepetition: This option allows to remove the repetition of the same subgraphs in the output.
 - samplingTimeInMS: This parameter specifies the time budget in milliseconds.
 
-## How to launch EXPRESS
+## How to launch Excess
 In order to execute the algorithm, the files provided in "Release" can be used. Then, the following command line can be used in this folder:
 ```
 java -jar Excess.jar parameters.txt

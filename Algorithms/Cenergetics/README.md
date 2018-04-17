@@ -59,7 +59,7 @@ These parameters are explained in what follows:
 - activateSPlus: Whether we mine positive characteristics.
 - activateCharacFailFirstPrinciple: Whether the algorithm uses the First Fail Principle in the generation of characteristics or not.
 
-## How to launch ENERGETICS
+## How to launch Cenergetics
 In order to execute the algorithm, the files provided in "Release" can be used. Then, the following command line can be used in this folder:
 ```
 java -jar Cenergetics.jar parameters.txt
