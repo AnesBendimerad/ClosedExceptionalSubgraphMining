@@ -62,7 +62,7 @@ These parameters are explained in what follows:
 ## How to launch ENERGETICS
 In order to execute the algorithm, the files provided in "Release" can be used. Then, the following command line can be used in this folder:
 ```
-java -jar ENERGETICS.jar parameters.txt
+java -jar Cenergetics.jar parameters.txt
 ```
 
 So we must specify the parameters file path in the command line.
