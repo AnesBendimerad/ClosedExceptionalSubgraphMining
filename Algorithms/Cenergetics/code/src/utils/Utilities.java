@@ -74,6 +74,12 @@ public class Utilities {
 					requiredParameters.remove("resultFolderPath");
 					designPoint.setResultFolderPath(elements[1]);
 					break;
+				case "plusRatio":
+					designPoint.setPlusRatio(Double.parseDouble(elements[1]));
+					break;
+				case "minusRatio":
+					designPoint.setMinusRatio(Double.parseDouble(elements[1]));
+					break;
 				default:
 					throw new RuntimeException("this parameter is unknown : " + elements[0]);
 				}

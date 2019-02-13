@@ -32,6 +32,24 @@ public class DesignPoint {
 	private boolean writeFoundPatterns=true;
 	private int replicationFactor=1;
 	
+	public boolean summarize=true;
+	public double jaccardValue=0.6;
+	private double plusRatio=1;
+	private double minusRatio=1;
+	
+	public void setMinusRatio(double plusRatio) {
+		this.minusRatio = plusRatio;
+	}
+	public void setPlusRatio(double minusRatio) {
+		this.plusRatio = minusRatio;
+	}
+	public double getMinusRatio() {
+		return minusRatio;
+	}
+	public double getPlusRatio() {
+		return plusRatio;
+	}
+	
 	public void setReplicationFactor(int replicationFactor) {
 		this.replicationFactor = replicationFactor;
 	}

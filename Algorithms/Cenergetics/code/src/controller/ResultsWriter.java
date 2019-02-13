@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,7 +17,6 @@ import model.Pattern;
 import utils.FinalCharacteristic;
 import utils.FinalPattern;
 import utils.FinalResults;
-import utils.Utilities;
 
 public class ResultsWriter {
 	public static void createFolder(String folderPath) {
@@ -32,7 +32,7 @@ public class ResultsWriter {
 		}
 	}
 
-	public static void writeResults(PatternComputer patternComputer, boolean writeFoundPatterns) {
+	public static void writeResults(PatternComputer patternComputer, boolean writeFoundPatterns,ArrayList<Pattern> summary) {
 		// we assume that resultFolder is already created
 		try {
 			// we write results
@@ -82,6 +82,54 @@ public class ResultsWriter {
 					gson.toJson(finalResults, writer);
 				} catch (IOException e) {
 					e.printStackTrace();
+				}
+				
+				if (summary!=null){
+					// we write summary
+					FinalResults finalResultsSum = new FinalResults();
+					finalResults.numberOfPatterns = summary.size();
+					finalResults.patterns = new FinalPattern[finalResults.numberOfPatterns];
+					for (int i = 0; i < finalResults.numberOfPatterns; i++) {
+						Pattern curP = summary.get(i);
+						FinalPattern fp = new FinalPattern();
+						fp.subgraph = new String[(int) curP.getSubgraphBitSet().cardinality()];
+						BitSetIterator iterator = new BitSetIterator(curP.getSubgraphBitSet());
+						int cpt, curId = 0;
+						while ((cpt = iterator.getNext()) >= 0) {
+							fp.subgraph[curId] = patternComputer.getGraph().getVertices()[cpt].getId();
+							curId++;
+						}
+						fp.characteristic = new FinalCharacteristic();
+						fp.characteristic.descriptorName = curP.getCharacteristic().getDescriptorMetaData()
+								.getDescriptorName();
+						fp.characteristic.positiveAttributes = new String[(int) curP.getCharacteristic().getsPlusBitSet()
+								.cardinality()];
+						iterator = new BitSetIterator(curP.getCharacteristic().getsPlusBitSet());
+						curId = 0;
+						while ((cpt = iterator.getNext()) >= 0) {
+							fp.characteristic.positiveAttributes[curId] = patternComputer.getGraph()
+									.getDescriptorsMetaData().getAttributesName()[cpt];
+							curId++;
+						}
+						fp.characteristic.negativeAttributes = new String[(int) curP.getCharacteristic().getsMinusBitSet()
+								.cardinality()];
+						iterator = new BitSetIterator(curP.getCharacteristic().getsMinusBitSet());
+						curId = 0;
+						while ((cpt = iterator.getNext()) >= 0) {
+							fp.characteristic.negativeAttributes[curId] = patternComputer.getGraph()
+									.getDescriptorsMetaData().getAttributesName()[cpt];
+							curId++;
+						}
+						fp.characteristic.score=curP.getCharacteristic().getScore();
+						finalResults.patterns[i]=fp;
+					}
+					
+					try (FileWriter writer = new FileWriter(
+							patternComputer.getDesignPoint().getResultFolderPath() + "/summary.json")) {
+						gson.toJson(finalResults, writer);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 				//BufferedWriter resultFile = new BufferedWriter(new FileWriter(
 				//		patternComputer.getDesignPoint().getResultFolderPath() + "/retrievedPatterns.json"));

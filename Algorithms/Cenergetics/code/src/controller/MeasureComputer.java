@@ -57,9 +57,11 @@ public class MeasureComputer {
 			double totalScoreOfVertex = 0;
 			double[] scores = new double[graph.getDescriptorsMetaData().getAttributesName().length];
 			for (int attIndex = 0; attIndex < graph.getDescriptorsMetaData().getAttributesName().length; attIndex++) {
+				double expectedV=0;
 				if (v.getDescriptorTotal() == 0) {
 					scores[attIndex] = 0;
 				} else {
+					expectedV=v.getDescriptorTotal()*totalDescriptorsValues[attIndex] / descriptorsTotalSum;
 					scores[attIndex] = ((v.getDescriptorValue(attIndex) / v.getDescriptorTotal())
 							- ((totalDescriptorsValues[attIndex]) / (descriptorsTotalSum)))
 							* (((double) (v.getDescriptorTotal())) / ((double) (descriptorsTotalSum)));
@@ -70,13 +72,13 @@ public class MeasureComputer {
 						scores[attIndex] = 0;
 					}
 				}
-				if (scores[attIndex] > 0) {
+				if (scores[attIndex] > 0 && v.getDescriptorValue(attIndex)>expectedV*designPoint.getPlusRatio()) {
 					positiveCharacteristics[attIndex].fastSet(i);
 					totalScoreOfVertex += scores[attIndex];
 				} else {
 					positiveCharacteristics[attIndex].fastClear(i);
 				}
-				if (scores[attIndex] < 0) {
+				if (scores[attIndex] < 0 && v.getDescriptorValue(attIndex)<expectedV*designPoint.getMinusRatio()) {
 					negativeCharacteristics[attIndex].fastSet(i);
 					totalScoreOfVertex -= scores[attIndex];
 				} else {

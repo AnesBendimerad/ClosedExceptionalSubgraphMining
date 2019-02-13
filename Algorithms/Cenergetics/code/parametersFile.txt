@@ -3,3 +3,5 @@ resultFolderPath=results
 delta=0.01
 writeFoundPatterns=false
 sigma=1
+plusRatio=2
+minusRatio=0.3
