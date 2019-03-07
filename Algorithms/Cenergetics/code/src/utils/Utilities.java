@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.HashSet;
 
 import model.DesignPoint;
+import model.SummaryType;
 
 public class Utilities {
 	
@@ -79,6 +80,9 @@ public class Utilities {
 					break;
 				case "minusRatio":
 					designPoint.setMinusRatio(Double.parseDouble(elements[1]));
+					break;
+				case "summarize":
+					designPoint.summarize=SummaryType.valueOf(elements[1]);
 					break;
 				default:
 					throw new RuntimeException("this parameter is unknown : " + elements[0]);

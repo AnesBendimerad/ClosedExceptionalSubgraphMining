@@ -32,10 +32,13 @@ public class DesignPoint {
 	private boolean writeFoundPatterns=true;
 	private int replicationFactor=1;
 	
-	public boolean summarize=true;
+	public SummaryType summarize=SummaryType.disjunctiveWracc;
+	
 	public double jaccardValue=0.6;
 	private double plusRatio=1;
 	private double minusRatio=1;
+	public int maxNbPatternsToMineInSummary=100000;
+	public int nbSummarizedPatterns=1000;
 	
 	public void setMinusRatio(double plusRatio) {
 		this.minusRatio = plusRatio;

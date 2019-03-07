@@ -1,7 +1,9 @@
 package mainpackage;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
+import controller.DisjunctiveWraccSummarizer;
 import controller.GraphBuilder;
 import controller.JaccardSummarizer;
 import controller.MeasureComputer;
@@ -11,6 +13,7 @@ import controller.ResultsWriter;
 import model.DesignPoint;
 import model.Graph;
 import model.Pattern;
+import model.SummaryType;
 import utils.Utilities;
 
 public class MainClass {
@@ -32,10 +35,13 @@ public class MainClass {
 		// System.out.println(graph.getVertices().length);
 		PatternComputer computer = new PatternComputer(designPoint, new MeasureComputer(graph));
 		computer.retrievePatterns();
-		
+		Collections.sort(computer.getPatterns(), Collections.reverseOrder());
 		ArrayList<Pattern> summary=null;
-		if (designPoint.summarize){
+		if (designPoint.summarize==SummaryType.jaccard){
 			summary=JaccardSummarizer.getSummary(computer.getPatterns(), designPoint);
+		}
+		else if (designPoint.summarize==SummaryType.disjunctiveWracc) {
+			summary=DisjunctiveWraccSummarizer.getSummary(graph, computer.getPatterns(), designPoint);
 		}
 		
 		ResultsWriter.writeResults(computer, designPoint.isWriteFoundPatterns(),summary);

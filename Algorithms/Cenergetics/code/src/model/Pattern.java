@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import org.apache.lucene.util.OpenBitSet;
 
-public class Pattern {
+public class Pattern implements Comparable<Pattern>{
 	private OpenBitSet subgraphBitSet;
 	private Characteristic characteristic;
-
+	public int updateId=0;
 	public Pattern(OpenBitSet subgraphBitSet, DescriptorMetaData descriptorMetaData, OpenBitSet sPlusSet,
 			OpenBitSet sMinusSet, double score,HashMap<Integer,Double> scoreByAttribute) {
 		this.subgraphBitSet = subgraphBitSet;
@@ -88,5 +88,15 @@ public class Pattern {
 		jsonString += "\n";
 		jsonString += tabulation + "}";
 		return jsonString;
+	}
+	@Override
+	public int compareTo(Pattern o) {
+		if (characteristic.getScore()>o.characteristic.getScore()) {
+			return 1;
+		}
+		if (characteristic.getScore()<o.characteristic.getScore()) {
+			return -1;
+		}
+		return 0;
 	}
 }
